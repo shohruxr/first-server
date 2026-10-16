@@ -8,7 +8,7 @@ const addUser = document.getElementById("addUser");
 let editUserId = null;
 
 const fetchUsers = () => {
-  fetch("http://localhost:1234/users")
+  fetch("/users")
     .then((javob) => javob.json())
     .then((data) => {
       if (!Array.isArray(data)) {
@@ -37,7 +37,7 @@ const fetchUsers = () => {
         li.appendChild(deleteButton);
         deleteButton.addEventListener("click", () => {
           if (confirm("Dangal ochirasizmi?")) {
-            fetch(`http://localhost:1234/users/${user.id}`, {
+            fetch(`/users/${user.id}`, {
               method: "DELETE",
               headers: {
                 "Content-Type": "application/json",
@@ -71,7 +71,7 @@ addUser.addEventListener("click", () => {
   };
 
   if (editUserId) {
-    fetch(`http://localhost:1234/users/${editUserId}`, {
+    fetch(`/users/${editUserId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -97,7 +97,7 @@ addUser.addEventListener("click", () => {
         console.log("ozgartirishda xatolik yuz berdi ", err);
       });
   } else {
-    fetch("http://localhost:1234/users", {
+    fetch("/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
